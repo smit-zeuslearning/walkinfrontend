@@ -1,0 +1,161 @@
+@import '../variables';
+
+.job-listing-wrapper {
+    background-color: $grayBackgroundColor;
+    padding: 35px 24px;
+
+    .card-wrapper {
+        background-color: #FFFFFF;
+        padding: 16px;
+        box-shadow: 0px 4px 6px $shadowColor;
+        margin-bottom: 24px;
+        position: relative;
+
+        .expires{
+            background-color: $jobExpiresBackgroundColor;
+            color: $redTextColor;
+            font-size: $fontSmall;
+            border-radius: 2px;
+            position: absolute;
+            right: 24px;
+            top: -2%;
+            font-weight: bold;
+            padding: 2px 8px;
+        }
+
+        .job-title {
+            color: $greenTextColor;
+            font-size: $jobCardTitleFontSize;
+            font-weight: bold;
+            margin-bottom: 16px;
+        }
+
+        .job-address-wrapper {
+            .address-heading {
+                color: $secondaryTextColor;
+                font-size: $fontSmall;
+                margin-bottom: 8px;
+            }
+
+            .date-time-wrapper {
+                display: flex;
+                align-items: center;
+
+                .date-time {
+                    color: $primaryTextColor;
+                    font-weight: bold;
+                    font-size: $fontMedium;
+                    padding-right: 16px;
+                }
+
+                .jobroles-vertical-seprator {
+                    height: 10px;
+                    border-right: 2px solid rgba($secondaryTextColor, $alpha: 0.12);
+                }
+
+                .location {
+                    color: $secondaryTextColor;
+                    padding-left: 16px;
+                    font-size: $fontSmall;
+                    display: flex;
+                    align-items: center;
+
+                    .location-logo {
+                        height: 16px;
+                        width: 16px;
+                    }
+                }
+            }
+        }
+
+        .horizontal-seprator {
+            width: 100%;
+            height: 1px;
+            border-top: 1px solid rgba($secondaryTextColor, $alpha: 0.12);
+            margin: 16px 0px;
+        }
+
+        .jobrole-wrapper {
+            .jobrole-title {
+                color: $secondaryTextColor;
+                font-size: $fontSmall;
+            }
+
+            .jobroles {
+                display: flex;
+                align-items: center;
+                margin-top: 8px;
+
+                .job {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: $fontMedium;
+                    font-weight: bold;
+
+                    .job-icon-wrapper {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        padding: 4px;
+                        border: 1px solid $primaryTextColor;
+                        border-radius: 100%;
+                        margin-right: 8px;
+
+                        img {
+                            height: 16px;
+                            width: 16px;
+                        }
+                    }
+                }
+
+                .jobroles-vertical-seprator{
+                    margin: 0px 8px;
+                    height: 12px;
+                    border-right: 2px solid rgba($secondaryTextColor, $alpha: 0.12);
+                }
+            }
+        }
+
+        .special-opportunity{
+            background-color: $yellowBackgroundColor;
+            color: $primaryTextColor;
+            width: fit-content;
+            margin: 16px 0px 0px 0px;
+            padding: 3px 8px;
+            font-size: $fontXs;
+            font-weight: bold;
+            border-radius: 9px;
+        }
+
+        .view-details-button-wrapper{
+            display: flex; 
+            justify-content: center;
+            align-items: center;
+            margin: 32px 0px 16px 0px;
+
+            button{
+                background-color: $primaryButtonColor;
+                color: $jobButtonTextColor;
+                text-transform: uppercase;
+                font-size: $fontMedium;
+                padding: 5px 16px;
+                box-shadow: 0px 3px 5px $shadowColor;
+                border: none;
+                font-weight: bold;
+                font-family: quicksand;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:375px) {
+    .jobroles{ 
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start !important;
+    }
+    .jobroles-vertical-seprator{
+        display: none;
+    }
+}

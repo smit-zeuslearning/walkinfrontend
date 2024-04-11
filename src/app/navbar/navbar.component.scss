@@ -1,0 +1,38 @@
+@import '../variables';
+
+.nav-wrapper{
+    background-image: url('../../assets/images/header_pattern_svg.svg');
+    background-color: #1F2834;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+
+    .nav-logo-wrapper{
+        display: flex;
+        align-items: center;
+        
+        img{
+            width: 125px;
+            height: 36px;
+        }
+    }
+    
+    .nav-link-profile-wrapper{
+        .user-wrapper{
+            background-color:#3C4E62;
+            border: 2px solid $primaryButtonColor;
+            border-radius: 100%;
+            overflow: hidden ;
+            height: 40px;
+            width: 40px;
+                
+            img{
+                height: 40px;
+                width: 40px;
+            }
+        }
+    }
+
+}

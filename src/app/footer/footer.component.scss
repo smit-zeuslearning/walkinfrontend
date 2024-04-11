@@ -1,0 +1,19 @@
+@import '../variables';
+
+.footer-wrapper{
+    background-color: $grayBackgroundColor;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 40px;
+
+    a{
+        color: $greenTextColor;
+        font-size: $fontSmall;
+        font-weight: bold;
+        padding: 0px 8px;
+    }
+
+    :first-child{
+        border-right: 1px solid #0000001F;
+    }
+}

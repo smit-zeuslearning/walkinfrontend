@@ -1,0 +1,18 @@
+<div class="signup-topbar-wrapper">
+    <!-- back button -->
+    <div class="signup-topbar-backbutton-wrapper" (click)="onBackClick()">
+        <img src="../../assets/icons/back.svg" alt="back to previous page">
+    </div>
+    <!-- end back button -->
+
+    <!-- heading -->
+    <div class="signup-topbar-heading">Create An Account</div>
+    <!-- end heading -->
+
+    <!-- Create buttons -->
+    <div class="signup-topbar-button-wrapper">
+        <button (click)="cencelSignup()">cancel</button>
+        <button [disabled]="currentActivePage != 'review'" (click)="onCreateClick()">create</button>
+    </div>
+    <!-- end create bvuttons -->
+</div>

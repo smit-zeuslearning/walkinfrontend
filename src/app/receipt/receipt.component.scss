@@ -1,0 +1,65 @@
+@import '../variables';
+
+.receipt-wrapper{
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    margin: 75px 24px;
+    padding: 16px;
+
+    h1{
+        color: $primaryTextColor;
+        text-align: center;
+        font-size: $jobCardTitleFontSize;
+        font-weight: bold;
+        margin: 74px 0px 8px 0px;
+    }
+    
+    .receipt-section-heading{
+        color: $secondaryTextColor;
+        font-size: $fontSmall;
+        margin-bottom: 8px;
+    }
+
+    .receipt-content{
+        color: $primaryTextColor;
+        font-size: $fontMedium;
+        font-weight: bold;
+        font-style: normal;
+    }
+
+    .seprator{
+        width: 100%;
+        border-top: 1px solid rgba($color: #000000, $alpha: 0.12);
+        margin: 16px 0px;
+    }
+
+    .date-time-wrapper{
+        .receipt-content{
+            p{
+                margin: 0;
+            }
+            &:first-child{
+                margin-bottom: 8px;
+            }
+        }
+    }
+
+    .download-hall-ticket-wrapper{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        button{
+            background-color: $primaryButtonColor;
+            color: $buttonnTextColor;
+            text-transform: uppercase;
+            border: none;
+            padding: 5px 16px;
+            font-size: $fontMedium;
+            font-family: quicksand;
+            box-sizing: 0px 3px 5px $shadowColor;
+            margin: 8px 0px 8px 0px;
+        }
+    }
+}

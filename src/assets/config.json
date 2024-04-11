@@ -1,0 +1,12 @@
+{
+    "baseurl": "https://localhost:8000/api/",
+    "firebaseConfig" : {
+        "apiKey": "AIzaSyCV1Q4vRRK7SZEcAfdJP6AlWO6NqquVbak",
+        "authDomain": "walkinportal-fe11c.firebaseapp.com",
+        "projectId": "walkinportal-fe11c",
+        "storageBucket": "walkinportal-fe11c.appspot.com",
+        "messagingSenderId": "895062157560",
+        "appId": "1:895062157560:web:dc9aa45c95d1d029c2f30d",
+        "measurementId": "G-B9BYK9360Z"
+      }
+}

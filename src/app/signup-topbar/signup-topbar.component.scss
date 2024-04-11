@@ -1,0 +1,42 @@
+@import '../variables';
+
+.signup-topbar-wrapper{
+    background-color: $signuptopbarBackgroundColor;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 28px;
+    height: 48px;
+
+    .signup-topbar-backbutton-wrapper{
+        width: 16px;
+        height: 24px;
+    }
+
+    .signup-topbar-heading{
+        color: $whiteTextColor;
+        font-size: $fontLarge;
+    }
+
+    .signup-topbar-button-wrapper{
+        :first-child{
+            margin-right: 16px;
+        }
+        button{
+            background-color: $primaryButtonColor;
+            color: $buttonnTextColor;
+            padding: 5px 19px;
+            font-size: $fontMedium;
+            text-transform: uppercase;
+            border: none;
+            box-shadow: 0px 3px 5px $shadowColor;
+            cursor: pointer;
+
+            &:disabled{
+                background-color: $primaryButtonDisabledColor;
+                cursor: default;
+            }
+        }
+    }
+
+}

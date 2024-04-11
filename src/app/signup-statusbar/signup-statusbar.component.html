@@ -1,0 +1,27 @@
+<div class="signup-statusbar-wrapper">
+
+    <!-- Status personal info -->
+    <div class="status-wrapper">
+        <div [ngClass]="currentActivePage == 'personalInfo' || currentActivePage == 'qualification' || currentActivePage == 'review' ? 'bg-green' : 'bg-gray'" >1</div>
+        <div>Personal Information</div>
+    </div>
+    <!-- end status personal info -->
+
+    <div class="liner"></div>
+
+    <!-- Status qualification -->
+    <div class="status-wrapper">
+        <div [ngClass]="currentActivePage == 'qualification' || currentActivePage == 'review' ? 'bg-green' : 'bg-gray'">2</div>
+        <div>Qualification</div>
+    </div>
+    <!-- end status qualitfication -->
+
+    <div class="liner"></div>
+
+    <!-- Status review -->
+    <div class="status-wrapper">
+        <div [ngClass]="currentActivePage == 'review' ? 'bg-green' : 'bg-gray'">3</div>
+        <div>Set Password</div>
+    </div>
+    <!-- end status review -->
+</div>

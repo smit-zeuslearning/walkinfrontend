@@ -1,0 +1,62 @@
+<div class="login-wrapper">
+    <div class="login-form-wrapper">
+        <!-- Login form heading -->
+        <h1 class="login-heading">Log in</h1>
+
+        <!-- Login Form -->
+        <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+
+            <!-- Email id -->
+            <div class="input-wrapper">
+                <input type="email" #email="ngModel" name="email" id="email" class="form-input form-control" placeholder="Email ID*" required ngModel email>
+                <div>
+                    <div>
+                        <span *ngIf="email.touched && (email.errors?.['required'])"  class="error-wrapper">Email is required!</span>
+                        <span *ngIf="email.touched && (email.errors?.['email'])" class="error-wrapper">Please enter valid email!</span>
+                    </div>
+                    <p></p>
+                </div>
+            </div>
+            <!-- end email id -->
+
+            <!-- Password -->
+            <div class="input-wrapper">
+                <input type="text" #password="ngModel" name="password" id="password" class="form-input" placeholder="Password*" minlength="4" required ngModel>
+                <div>
+                    <div>
+                        <span *ngIf="password.touched && (password.errors?.['required'])" class="error-wrapper">Password is required!</span>
+                        <span *ngIf="password.touched && (password.errors?.['minlength'])" class="error-wrapper">Please enter valid password! Password must be of minimum 4 character long.</span>
+                    </div>
+                    <p [routerLink]="['/forgotpassword']">forgot password?</p>
+                </div>
+            </div>
+            <!-- end password -->
+
+            <!-- Remember me -->
+            <div class="rememmbeme-wrapper">
+                <img (click)='changeRememberme()'
+                    [src]="remembermeChecked?  '../../assets/icons/checkbox-checked.svg' : '../../assets/icons/checkbox-unchecked.svg'"
+                    alt="Remember me">
+                Remember Me
+            </div>
+            <!-- end remember me -->
+
+            <!-- Login button -->
+            <div class="login-button-wrapper">
+                <button [disabled] = "loginForm.invalid" type="submit">log in</button>
+            </div>
+            <!-- end login button -->
+
+            <!-- Signup link -->
+            <div class="notregistered-wrapper">
+                <div>Not registered yet?</div>
+                <div>Create an account</div>
+            </div>
+            <!-- end signup link -->
+        </form>
+        <!-- end Login form -->
+    </div>
+</div>
+
+<!-- Footer [Componenet] -->
+<app-footer></app-footer>

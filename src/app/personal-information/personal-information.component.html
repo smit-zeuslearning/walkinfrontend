@@ -1,0 +1,221 @@
+<ng-container [formGroup]="signupForm">
+    <div class="personal-info-content-wrapper">
+        <!-- Personal Informaion Form -->
+        <div class="personal-info-wrapper">
+            <!-- Form details -->
+            <div class="personal-info-form-wrapper">
+                <!-- First name -->
+                <div class="input-wrapper">
+                    <label class="personal-info-label" for="firstname">First Name*</label>
+                    <div *ngIf="signupForm.controls['firstname'].touched && signupForm.controls['firstname'].errors" class="error-wrapper">
+                        <span *ngIf="signupForm.controls['firstname'].errors['required']">First name is required!</span>
+                        <span *ngIf="signupForm.controls['firstname'].errors['pattern']">Please enter valid first name!</span>
+                    </div>
+                    <input type="text"
+                        class="persobal-info-input" 
+                        id="firstname" 
+                        placeholder="Enter first name"
+                        formControlName="firstname"
+                    >
+                </div>
+                <!-- end First name -->
+
+                <!-- Last name -->
+                <div class="input-wrapper">
+                    <label class="personal-info-label" for="lastname">Last Name*</label>
+                    <div *ngIf="signupForm.controls['lastname'].touched && signupForm.controls['lastname'].errors" class="error-wrapper">
+                        <span *ngIf="signupForm.controls['lastname'].errors['required']">Last name is required!</span>
+                        <span *ngIf="signupForm.controls['lastname'].errors['pattern']">Please enter valid last name!</span>
+                    </div>
+                    <input type="text"
+                        class="persobal-info-input" 
+                        id="lastname" 
+                        placeholder="Enter last name"
+                        formControlName="lastname"
+                    >
+                </div>
+                <!-- end Last name -->
+
+                <!-- Email -->
+                <div class="input-wrapper">
+                    <label class="personal-info-label" for="email">Email*</label>
+                    <div *ngIf="signupForm.controls['email'].touched && signupForm.controls['email'].errors" class="error-wrapper">
+                        <span *ngIf="signupForm.controls['email'].errors['required']">Email is required!</span>
+                        <span *ngIf="signupForm.controls['email'].errors['email']">Please enter valid email!</span>
+                    </div>
+                    <input type="email"
+                        class="persobal-info-input" 
+                        id="email"
+                        placeholder="Enter email"
+                        formControlName="email"
+                    >
+                </div>
+                <!-- end Email -->
+
+                <!-- Contact Number -->
+                <div class="contact-number-wrapper">
+                    <label class="personal-info-label" for="phonenumber">Phone Number*</label>
+                    <div *ngIf="signupForm.controls['countrycode'].touched && signupForm.controls['countrycode'].errors" class="error-wrapper">
+                        <span *ngIf="signupForm.controls['countrycode'].errors['required']" class="error-wrapper">Country code is required!</span>
+                        <span *ngIf="signupForm.controls['countrycode'].errors['pattern']" class="error-wrapper">Please enter valid country code!</span>
+                    </div>
+                    <div *ngIf="signupForm.controls['phonenumber'].touched && signupForm.controls['phonenumber'].errors" class="error-wrapper">
+                        <span *ngIf="signupForm.controls['phonenumber'].errors['required']" class="error-wrapper">Phone number is required!</span>
+                        <span *ngIf="signupForm.controls['phonenumber'].errors['pattern']" class="error-wrapper">Please enter valid phone number!</span>
+                    </div>
+                    <div class="contact-input-wrapper">
+                        +
+                        <input type="text"
+                            class="persobal-info-input" 
+                            id="countrycode" 
+                            maxlength="3" 
+                            placeholder="91"
+                            formControlName="countrycode"
+                        >
+                        <input type="tel"
+                            class="persobal-info-input" 
+                            id="phonenumber" 
+                            maxlength="11" 
+                            placeholder="e.g. 0123456789"
+                            formControlName="phonenumber"
+                        >
+                    </div>
+                </div>
+                <!-- end Contact number -->
+
+                <!-- Upload resume -->
+                <div class="resume-upload-wrapper">
+                    <label class="personal-info-label" for="resume">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"
+                            fill="#1F7A54">
+                            <path d="M0 0h24v24H0z" fill="none" />
+                            <path d="M5 4v2h14V4H5zm0 10h4v6h6v-6h4l-7-7-7 7z" />
+                        </svg>
+                        upload resume
+                    </label>
+                    <div *ngIf="signupForm.controls['resume'].touched && signupForm.controls['resume'].errors" class="error-wrapper">
+                        <span *ngIf="signupForm.controls['resume'].errors['required']" class="error-wrapper">Resume is required!</span>
+                    </div>
+                    <span class="resume-file-name-wrapper">{{ resumeFileName || 'No file selected' }}</span>
+                    <input type="file"
+                        class="persobal-info-input" 
+                        id="resume" 
+                        accept="application/pdf" 
+                        (change)="onResumeSelect($event)"
+                    >
+                </div>
+                <!-- end upload resume -->
+
+                <!-- Protfolio URL -->
+                <div class="input-wrapper">
+                    <label class="personal-info-label" for="portfolio">Portfolio URL (if any)</label>
+                    <div *ngIf="signupForm.controls['portfolio'].touched && signupForm.controls['portfolio'].errors" class="error-wrapper">
+                        <span *ngIf="signupForm.controls['portfolio'].errors['pattern']">Please enter valid url!</span>
+                    </div>
+                    <input type="url"
+                        class="persobal-info-input" 
+                        id="portfolio"
+                        placeholder="Enter portfolio url(optional)" 
+                        formControlName="portfolio"
+                    >
+                </div>
+                <!-- end Portfoli URL -->
+
+                <!-- Preferred job role -->
+                <div class="preferred-job-role-wrapper">
+                    <div class="preferred-job-role-heading">Preferred Job Roles*</div>
+                    <!-- <span class="error-wrapper">Select atlast one!</span> -->
+
+                    <div class="checkbox">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox"
+                                class="persobal-info-input" 
+                                id="instructionalDesigner"
+                                formControlName="instructionalDesigner"
+                            >
+                            <label class="personal-info-label" class="check-text-label" for="instructionalDesigner">Instructional Designer</label>
+                        </div>
+        
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox"
+                                class="persobal-info-input" 
+                                id="softwareEngineer"
+                                formControlName="softwareEngineer"
+                            >
+                            <label class="personal-info-label" class="check-text-label" for="softwareEngineer">Software Engineer</label>
+                        </div>
+        
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox"
+                                class="persobal-info-input" 
+                                id="softwareQualityEngineer"
+                                formControlName="softwareQualityEngineer"
+                            >
+                            <label class="personal-info-label" class="check-text-label" for="softwareQualityEngineer">Software Quality Engineer</label>
+                        </div>
+                    </div>
+                </div>
+                <!-- end Preferred job role -->
+
+                <!-- Refrral -->
+                <div class="input-wrapper">
+                    <label class="personal-info-label" for="refrral">If You Are Registering Via A Referral, Please Mention Full Name Of The Employee Who Referred You</label>
+                    <div *ngIf="signupForm.controls['refrral'].touched && signupForm.controls['refrral'].errors" class="error-wrapper">
+                        <span *ngIf="signupForm.controls['refrral'].errors['pattern']">Please enter valid referrel name!</span>
+                    </div>
+                    <input type="text"
+                        class="persobal-info-input" 
+                        id="refrral"
+                        placeholder="Enter full name of person who refferred you(optional)" 
+                        formControlName="refrral"
+                    >
+                </div>
+                <!-- end Refrral -->
+
+                <!-- Get email updates -->
+                <div class="get-update-wrapper">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox"
+                            class="persobal-info-input"  
+                            id="getupdates"
+                            formControlName="getupdates"
+                        >
+                        <label class="personal-info-label" class="check-text-label" for="getupdates">Send me job related updates via mail</label>
+                    </div>
+                </div>
+                <!-- end Get email updates -->
+            </div>
+            <!-- end Form details -->
+
+            <!-- Profile pic upload -->
+            <div class="profile-pic-flex-wrapper">
+                <div class="profile-pic-upload-wrapper">
+                    <div class="profile-pic-wrapper">
+                        <img class="profile-pic" *ngIf="profilePicAsBase64 == undefined" src="../../assets/icons/user_incognito.png" alt="profile image">
+                        <img class="profile-pic" *ngIf="profilePicAsBase64 != undefined" src={{profilePicAsBase64}} alt="profile image">
+                    </div>
+                    <div class="upload-profile-pic-input-wrapper">
+                        <label class="personal-info-label" for="profilepic">upload display picture*</label>
+                        <span class="upload-profile-pic-file-name">{{profilePicFileName || 'No File Seleced'}}</span>
+                        <input type="file"
+                            class="persobal-info-input"  
+                            id="profilepic" 
+                            [accept]="'image/*'" 
+                            (change)='onProfilePicSelected($event)'
+                        >
+                    </div>
+                    <span class="upload-profile-pic-warning">Max. image size: 5 MB</span>
+                </div>
+            </div>
+            <!-- end Profile pic upload -->
+        </div>
+        <!-- end Personal Informaion Form -->
+    </div>
+
+    <!-- Next button -->
+    <div class="next-wrapper">
+        <button (click)="onNextClick()">next</button>
+    </div>
+    <!-- end Next button -->
+
+</ng-container>

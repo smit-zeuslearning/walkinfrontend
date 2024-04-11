@@ -1,0 +1,238 @@
+@import '../variables';
+
+.personal-info-content-wrapper {
+    background-color: $grayBackgroundColor;
+    padding: 0px 24px;
+
+    .personal-info-wrapper {
+        background-color: #FFFFFF;
+        display: flex;
+        padding: 24px;
+
+        .personal-info-form-wrapper {
+            flex: 1;
+
+            .input-wrapper {
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 40px;
+            }
+
+            .personal-info-label {
+                color: $secondaryTextColor;
+                font-size: $fontMedium;
+            }
+
+            .persobal-info-input {
+                color: black;
+                font-family: quicksand;
+                font-weight: bold;
+                padding: 4px 0px;
+                border: none;
+                border-bottom: 1px solid rgba($color: black, $alpha: 0.5);
+                font-size: $fontLarge;
+                margin-top: 10px;
+
+                &::placeholder {
+                    color: $secondaryTextColor;
+                    font-weight: bold;
+                }
+
+                &:focus {
+                    outline: none
+                }
+            }
+
+            .contact-number-wrapper {
+                margin-bottom: 40px;
+                display: flex;
+                flex-direction: column;
+
+                .contact-input-wrapper {
+                    #countrycode {
+                        width: 30px;
+                        margin-right: 4px;
+                    }
+
+                    #phonenumber {
+                        width: 100px;
+                    }
+                }
+            }
+
+            .resume-upload-wrapper {
+                margin-bottom: 40px;
+                display: flex;
+                flex-direction: column;
+
+                .resume-file-name-wrapper {
+                    color: black;
+                    font-size: $fontSmall;
+                    margin-top: 5px;
+                }
+
+                label {
+                    color: $greenTextColor;
+                    text-transform: uppercase;
+                    font-weight: bold;
+                    font-size: $fontMedium;
+                    display: flex;
+                    align-items: center;
+
+                    svg {
+                        height: 24px;
+                    }
+                }
+
+                input {
+                    display: none;
+                }
+            }
+
+            .preferred-job-role-wrapper {
+                margin-bottom: 40px;
+
+                .preferred-job-role-heading {
+                    color: $secondaryTextColor;
+                    font-size: $fontMedium;
+                }
+
+
+                :last-child {
+                    margin-bottom: 0px;
+                }
+            }
+
+            .checkbox {
+                margin-top: 16px;
+            }
+
+            .checkbox-wrapper {
+                display: flex;
+                align-items: center;
+                margin-bottom: 16px;
+
+                input[type="checkbox"] {
+                    appearance: none;
+                    position: relative;
+                    margin: 0px;
+                    padding: 0px;
+                }
+
+                input[type="checkbox"]::after {
+                    content: url('../../assets/icons/checkbox-unchecked.svg');
+                    position: absolute;
+                    top: -11px;
+                    left: -3px;
+                }
+
+                input[type="checkbox"]:checked::after {
+                    content: url('../../assets/icons/checkbox-checked.svg');
+                    position: absolute;
+                    top: -11px;
+                    left: -3px;
+                }
+
+                .check-text-label {
+                    color: $primaryTextColor;
+                    font-size: $fontLarge;
+                    font-weight: bold;
+                    margin-left: 30px;
+                }
+            }
+
+
+        }
+
+
+        .profile-pic-flex-wrapper {
+            display: flex;
+            flex: 1;
+            justify-content: flex-end;
+
+            .profile-pic-upload-wrapper {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                .profile-pic-wrapper {
+                    border-radius: 50%;
+                    border: 1px solid black;
+                    overflow: hidden;
+
+                    .profile-pic {
+                        width: 112px;
+                        height: 112px;
+                    }
+                }
+
+                .upload-profile-pic-input-wrapper {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    margin-top: 16px;
+
+                    label {
+                        color: $greenTextColor;
+                        text-transform: uppercase;
+                        font-weight: bold;
+                        font-size: $fontSmall;
+                    }
+
+                    input {
+                        display: none;
+                    }
+
+                    .upload-profile-pic-file-name {
+                        color: black;
+                        font-size: $fontSmall;
+                    }
+                }
+
+                .upload-profile-pic-warning {
+                    color: $greyTextColor;
+                    font-size: $fontXs;
+                    margin-top: 8px;
+                }
+            }
+        }
+
+    }
+
+}
+
+.error-wrapper {
+    color: $redTextColor;
+    font-size: $fontSmall;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+}
+
+.next-wrapper {
+    margin: 32px 0px;
+    display: flex;
+    justify-content: center;
+
+    button {
+        background-color: $primaryButtonColor;
+        color: $buttonnTextColor;
+        text-transform: uppercase;
+        font-family: quicksand;
+        box-shadow: 0px 3px 5px $shadowColor;
+        border: none;
+        font-size: $fontMedium;
+        padding: 5px 27px;
+        font-weight: bold;
+
+        &:hover{
+            background-color: $primaryButtonHoverColor;
+        }
+
+        &:disabled{
+            background-color: $primaryButtonDisabledColor;
+            cursor: default;
+        }
+    }
+}

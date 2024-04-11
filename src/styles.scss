@@ -1,0 +1,17 @@
+// ********* Global Style *********
+
+// Quicksand fonts
+@font-face {
+    font-family: quicksand;
+    src: url('./assets/fonts/quicksand/Quicksand-VariableFont_wght.ttf');
+}
+
+body{
+    background-color: #EEEEEE;
+    margin: 0;
+    padding: 0;
+    font-family: quicksand;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

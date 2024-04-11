@@ -1,0 +1,17 @@
+<ng-container [formGroup]="signupForm">
+    <!-- Signup topbar (Navigate to pages ) -->
+    <app-signup-topbar [currentActivePage]='currentActivePage' (changeActivePage)="changeActivePage($event)" (submitForm)="onSignupFormSubmit()"></app-signup-topbar>
+    <!-- Signup statsbar -->
+
+    <!-- Sign up status bar -->
+    <app-signup-statusbar [currentActivePage]='currentActivePage'></app-signup-statusbar>
+    <!-- Sign up status bar -->
+
+    <!-- Signup form -->
+    <div>
+        <app-personal-information formGroupName="personalInfo" (changeActivePage)="changeActivePage($event)" *ngIf="currentActivePage == 'personalInfo'" />
+        <app-qualification formGroupName="qualificationInfo" (changeActivePage)="changeActivePage($event)" *ngIf="currentActivePage == 'qualification'" />
+        <app-setpassword *ngIf="currentActivePage == 'review'" (singupFormSubmit)="onSignupFormSubmit()" />
+    </div>
+</ng-container>
+<!-- end Signup form -->

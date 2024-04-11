@@ -1,0 +1,237 @@
+@import '../variables';
+
+.educational-qualification-wrapper {
+    background-color: #FFFFFF;
+    margin: 24px;
+
+    .education-form-wrapper {
+        padding: 24px;
+
+    }
+}
+
+.double-input-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    input {
+        margin-right: 24px;
+    }
+}
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+
+.half-input-width{
+    max-width: 48.5%;
+    margin-right: 24px;
+}
+
+.qualification-label {
+    color: $secondaryTextColor;
+    font-size: $fontSmall;
+}
+
+.qualification-input {
+    color: black;
+    font-family: quicksand;
+    font-weight: bold;
+    padding: 4px 0px;
+    border: none;
+    border-bottom: 1px solid rgba($color: black, $alpha: 0.5);
+    font-size: $fontLarge;
+    margin-top: 10px;
+
+    &::placeholder {
+        color: $secondaryTextColor;
+        font-weight: bold;
+    }
+
+    &:focus {
+        outline: none
+    }
+}
+
+@media only screen and (max-width:768px) {
+    .double-input-wrapper {
+        grid-template-columns: 1fr !important;
+    }
+
+    .half-input-width{
+        max-width: 100%;
+        margin-right: 0px;
+    }
+}
+
+.heading {
+    background-color: #DBEFFF;
+    color: black;
+    font-size: $fontLarge;
+    padding: 18px;
+    font-weight: bold;
+}
+
+.professional-qualification-wrapper {
+    background-color: #FFFFFF;
+    margin: 0px 24px 8px 24px;
+
+    .application-type-wrapper {
+        padding: 24px;
+    }
+}
+
+// Styling for the RADIO BUTTON
+.radio-main-wrapper {
+
+    .radio-label {
+        color: $secondaryTextColor;
+        font-size: $fontSmall;
+        margin-bottom: 12px;
+    }
+
+    .radio {
+        display: flex;
+        flex-direction: row;
+
+        label {
+            color: $primaryTextColor;
+            font-weight: bold;
+            font-size: $fontLarge;
+        }
+
+        input[type='radio'] {
+            padding: 0px;
+            appearance: none;
+            position: relative;
+        }
+
+        input[type='radio']::after {
+            content: url('../../assets/icons/radio_button_unchecked.svg');
+            position: absolute;
+            top: -19px;
+            left: -9px;
+        }
+
+        input[type='radio']:checked:after {
+            content: url('../../assets/icons/radio_button_checked.svg');
+            position: absolute;
+            top: -19px;
+            left: -9px;
+        }
+
+        :first-child {
+            margin-right: 24px;
+        }
+    }
+}
+// end Styling for the RADIO BUTTON
+
+.personal-info-form-wrapper {
+    background-color: #FFFFFF;
+    margin: 0px 24px;
+    padding: 24px;
+
+    .notice-period-wrapper{
+        margin-bottom: 12px;
+    }
+
+    .appearedintest-wrapper{
+        margin-bottom: 12px;
+    }
+}
+
+.mb-0{
+    margin-bottom: 0px;
+}
+
+.next-wrapper {
+    margin: 32px 0px;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    
+    button {
+        background-color: $primaryButtonColor;
+        color: $buttonnTextColor;
+        text-transform: uppercase;
+        font-family: quicksand;
+        box-shadow: 0px 3px 5px $shadowColor;
+        border: none;
+        font-size: $fontMedium;
+        padding: 5px 27px;
+        font-weight: bold;
+
+        &:hover{
+            background-color: $primaryButtonHoverColor;
+        }
+
+        &:disabled{
+            background-color: $primaryButtonDisabledColor;
+            cursor: default;
+        }
+    }
+
+}
+
+// ##### Error text styling #####
+.error-wrapper {
+    color: $redTextColor;
+    font-size: $fontSmall;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+}
+// end error text styling
+
+// ##### Styling for the Checkbox #####
+.checkbox{
+    margin-top: 16px;
+}
+.checkbox-root{
+    .checkbox-heading{
+        color: $secondaryTextColor;
+        font-size: $fontSmall;
+        margin-bottom: 16px;
+    }
+
+    .checkbox-wrapper {
+        display: flex;
+        align-items: center;
+        margin-bottom: 16px;
+    
+        input[type="checkbox"] {
+            appearance: none;
+            position: relative;
+            margin: 0px;
+            padding: 0px;
+        }
+    
+        input[type="checkbox"]::after {
+            content: url('../../assets/icons/checkbox-unchecked.svg');
+            position: absolute;
+            top: -11px;
+            left: -3px;
+        }
+    
+        input[type="checkbox"]:checked::after {
+            content: url('../../assets/icons/checkbox-checked.svg');
+            position: absolute;
+            top: -11px;
+            left: -3px;
+        }
+    
+        .check-text-label {
+            color: $primaryTextColor;
+            font-size: $fontLarge;
+            font-weight: bold;
+            margin-left: 30px;
+        }
+    }
+}
+// end styling for checkbox
+
+.d-none{
+    display: none!important;
+}
