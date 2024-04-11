@@ -28,6 +28,12 @@
                 text-transform: uppercase;
                 border: none;
                 box-shadow: 0px 3px 5px $shadowColor;
+                cursor: pointer;
+
+                &:disabled{
+                    background-color: $primaryButtonDisabledColor;
+                    cursor: default;
+                }
             }
         }
 
@@ -173,6 +179,7 @@
 
             .subsection {
                 padding: 16px 0px;
+                border-bottom: 1px solid rgba($color: #000000, $alpha: 0.12);
 
                 .subcontent-heading {
                     color: $secondaryTextColor;
@@ -195,6 +202,124 @@
 
     // ##### end #####
 }
+
+// ##### Styling for the resume upload #####
+.resume-upload-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .resume-file-name-wrapper {
+        color: black;
+        font-size: $fontSmall;
+        margin-top: 5px;
+    }
+
+    label {
+        color: $greenTextColor;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: $fontMedium;
+        display: flex;
+        align-items: center;
+
+        svg {
+            height: 24px;
+        }
+    }
+
+    input {
+        display: none;
+    }
+}
+
+// ##### End #####
+
+// ##### Styling for the checkboxes #####
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+
+    input[type="checkbox"] {
+        appearance: none;
+        position: relative;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    input[type="checkbox"]::after {
+        content: url('../../assets/icons/checkbox-unchecked.svg');
+        position: absolute;
+        top: -11px;
+        left: -3px;
+    }
+
+    input[type="checkbox"]:checked::after {
+        content: url('../../assets/icons/checkbox-checked.svg');
+        position: absolute;
+        top: -11px;
+        left: -3px;
+    }
+
+    .check-text-label {
+        color: $primaryTextColor;
+        font-size: $fontLarge;
+        font-weight: bold;
+        margin-left: 30px;
+    }
+}
+// End
+
+// Styling for RADIO BUTTONS
+.radio-main-wrapper {
+
+    .radio-label {
+        color: $secondaryTextColor;
+        font-size: $fontSmall;
+        margin-bottom: 12px;
+    }
+
+    .radio {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        label {
+            color: $primaryTextColor;
+            font-weight: bold;
+            font-size: $fontLarge;
+        }
+
+        input[type='radio'] {
+            padding: 0px;
+            appearance: none;
+            position: relative;
+        }
+
+        input[type='radio']::after {
+            content: url('../../assets/icons/radio_button_unchecked.svg');
+            position: absolute;
+            top: -19px;
+            left: -9px;
+        }
+
+        input[type='radio']:checked:after {
+            content: url('../../assets/icons/radio_button_checked.svg');
+            position: absolute;
+            top: -19px;
+            left: -9px;
+        }
+
+        :first-child {
+            margin-right: 24px;
+        }
+    }
+}
+// ##### End #####
 
 @media only screen and (max-width: 400px) {
     .heading {

@@ -5,7 +5,7 @@
         <!-- Heading and apply button -->
         <div class="heading">
             <h1>Walk In for Multiple Job Roles</h1>
-            <button>apply</button>
+            <button [disabled]="!jobApplicationForm.valid" (click)="submitJobApplicationForm()">apply</button>
         </div>
         <!-- end heading -->
 
@@ -64,16 +64,130 @@
             <!-- end job wrapper -->
         </div>
         <div class="tablet-apply-button-wrapper">
-            <button>apply</button>
+            <button [disabled]="!jobApplicationForm.valid" (click)="submitJobApplicationForm()">apply</button>
         </div>
     </div>
     <!-- end job details -->
     
-    <!-- Prerequisite and application -->
-    <div class="prerequisite-wrapper">
+    <!-- Application -->
+    <div class="section-wrapper">
+        <!-- Section heading -->
+        <div class="section-heading-wrapper">
+            <div class="section-heading">Pre-requisites & Application Process</div>
+            <div class="section-wrap-button-wrapper" (click)="toggleApplication()">
+                <svg *ngIf="!showApplication" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg>
+                <svg *ngIf="showApplication" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M182.6 137.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-9.2 9.2-11.9 22.9-6.9 34.9s16.6 19.8 29.6 19.8H288c12.9 0 24.6-7.8 29.6-19.8s2.2-25.7-6.9-34.9l-128-128z"/></svg>
+            </div>
+        </div>
+        <!-- end Section heading -->
 
+        <!-- Section content -->
+        <div *ngIf="showApplication" class="section-content-wrapper">
+            <div class="section-subcontent-wrapper" [formGroup]="jobApplicationForm">
+                <!-- Sub Section 1 -->
+                <div class="subsection">
+                    <div class="subcontent-heading">
+                        Select a Time Slot :
+                    </div>
+                    <div class="subcontent-content">
+                        <div class="radio-main-wrapper">
+                            <div class="radio">
+                                <div class="radio-wrapper">
+                                    <input type="radio" 
+                                        id="timeSlot9to11"
+                                        value="9to11"
+                                        formControlName="timeSlot"
+                                    >
+                                    <label for="timeSlot9to11">9:00 AM to 11:00 AM</label>
+                                </div>
+                                <div class="radio-wrapper">
+                                    <input type="radio" 
+                                        id="timeSlot1to3"
+                                        value="11to3"
+                                        formControlName="timeSlot"
+                                    >
+                                    <label for="timeSlot1to3">1:00 PM to 3:00 PM</label>
+                                </div>
+                                <div class="radio-wrapper">
+                                    <input type="radio" 
+                                        id="timeSlot3to6"
+                                        value="3to6"
+                                        formControlName="timeSlot"
+                                    >
+                                    <label for="timeSlot3to6">3:00 PM to 6:00 PM</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end Sub Section 1 -->
+
+                <!-- Sub Section 2 -->
+                <div class="subsection">
+                    <div class="subcontent-heading">
+                        Select Your Preference :
+                    </div>
+                    <div class="subcontent-content">
+                        <div class="checkbox">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox"
+                                    class="persobal-info-input" 
+                                    id="instructionalDesigner"
+                                    formControlName="instructionalDesigner"
+                                >
+                                <label class="personal-info-label" class="check-text-label" for="instructionalDesigner">Instructional Designer</label>
+                            </div>
+            
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox"
+                                    class="persobal-info-input" 
+                                    id="softwareEngineer"
+                                    formControlName="softwareEngineer"
+                                >
+                                <label class="personal-info-label" class="check-text-label" for="softwareEngineer">Software Engineer</label>
+                            </div>
+            
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox"
+                                    class="persobal-info-input" 
+                                    id="softwareQualityEngineer"
+                                    formControlName="softwareQualityEngineer"
+                                >
+                                <label class="personal-info-label" class="check-text-label" for="softwareQualityEngineer">Software Quality Engineer</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end Sub Section 2 -->
+
+                <!-- Sub Section 3 -->
+                <div class="subsection">
+                    <div class="subcontent-content">
+                        <div class="resume-upload-wrapper">
+                            <label class="personal-info-label" for="updatedResume">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"
+                                    fill="#1F7A54">
+                                    <path d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M5 4v2h14V4H5zm0 10h4v6h6v-6h4l-7-7-7 7z" />
+                                </svg>
+                                upload resume
+                            </label>
+                            <span class="resume-file-name-wrapper">{{ resumeFileName || 'No file selected' }}</span>
+                            <input type="file"
+                                class="persobal-info-input" 
+                                id="updatedResume" 
+                                accept="application/pdf" 
+                                (change)="onResumeSelect($event)"
+                            >
+                        </div>
+                    </div>
+                </div>
+                <!-- end Sub Section 3 -->
+            </div>
+        </div>
+        <!-- end Section content -->
     </div>
-    <!-- end Prerequisite and application -->
+    <!-- end Application -->
 
     <!-- Instructional designer -->
     <div class="section-wrapper">
