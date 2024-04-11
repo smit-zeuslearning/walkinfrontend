@@ -4,7 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Authenticated } from '../../../_interfaces/authenticated.interface';
 import { catchError, retry, throwError } from 'rxjs';
 import { Router } from '@angular/router';
-import { UserRegistration } from '../../../_interfaces/userregistration.interface';
+import { FresherUserRegistrationDto, UserRegistration } from '../../../_interfaces/userregistration.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -68,7 +68,7 @@ export class AuthService {
   }
 
   // Method to perform signup
-  performSignup(userData: UserRegistration) {
+  performSignup(userData: UserRegistration | FresherUserRegistrationDto) {
     this.signup(userData).subscribe((data: Authenticated) => {
       this.setSession(data);
       alert("You are registered and login successfully!");
@@ -77,7 +77,7 @@ export class AuthService {
   }
   
   // Method to register user
-  signup(userData: UserRegistration) {
+  signup(userData: UserRegistration | FresherUserRegistrationDto) {
     return this.http.post<any>(`${this.config.baseurl}register`, userData)
       .pipe(
         catchError(this.handleRegisterUserError)

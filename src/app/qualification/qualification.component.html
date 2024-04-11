@@ -14,7 +14,7 @@
                     <label class="qualification-label"  for="percentage">Aggregate Percentage*</label>
                     <div *ngIf="signupForm.controls['percentage'].touched && signupForm.controls['percentage'].errors" class="error-wrapper">
                         <span *ngIf="signupForm.controls['percentage'].errors['required']" class="error-wrapper">Aggregate percentage is required!</span>
-                        <span *ngIf="signupForm.controls['percentage'].errors['max']" class="error-wrapper">Please enter valid value!</span>
+                        <span *ngIf="signupForm.controls['percentage'].errors['max']" class="error-wrapper">Aggregate percentage can't be more than 100%!</span>
                     </div>
                     <input type="text" 
                         class="qualification-input"
@@ -130,7 +130,6 @@
                                 id="fresh" 
                                 formControlName="applicationtype"
                                 value="fresher"
-                                checked
                             >
                             <label for="fresh">Fresher</label>
                         </div>
@@ -151,118 +150,119 @@
 
         <!-- Personal info form -->
         <div class="personal-info-form-wrapper">
-            <!-- Work experience -->
-            <div class="input-wrapper half-input-width">
-                <label class="qualification-label"  for="yearofexperience">Years of Experience*</label>
-                <div *ngIf="signupForm.controls['yearofexperience'].touched && signupForm.controls['yearofexperience'].errors" class="error-wrapper">
-                    <span *ngIf="signupForm.controls['yearofexperience'].errors['required']">Please enter total work experience!</span>
-                    <span *ngIf="signupForm.controls['yearofexperience'].errors['pattern']">Number of experience year can only contain digits!</span>
+            <ng-container *ngIf="appicationType == 'experienced'">
+                <!-- Work experience -->
+                <div class="input-wrapper half-input-width">
+                    <label class="qualification-label"  for="yearofexperience">Years of Experience*</label>
+                    <div *ngIf="signupForm.controls['yearofexperience'].touched && signupForm.controls['yearofexperience'].errors" class="error-wrapper">
+                        <span *ngIf="signupForm.controls['yearofexperience'].errors['required']">Please enter total work experience!</span>
+                        <span *ngIf="signupForm.controls['yearofexperience'].errors['pattern']">Number of experience year can only contain digits!</span>
+                    </div>
+                    <input type="text"
+                        class="qualification-input" 
+                        id="yearofexperience" 
+                        placeholder="Enter total work experience"
+                        formControlName="yearofexperience"
+                    >
                 </div>
-                <input type="text"
-                    class="qualification-input" 
-                    id="yearofexperience" 
-                    placeholder="Enter total work experience"
-                    formControlName="yearofexperience"
-                >
-            </div>
-            <!-- end Work experience -->
+                <!-- end Work experience -->
+                
+                <!-- Current CTC -->
+                <div class="input-wrapper half-input-width">
+                    <label class="qualification-label"  for="currentctc">Current CTC* (In Rupees)</label>
+                    <div *ngIf="signupForm.controls['currentctc'].touched && signupForm.controls['currentctc'].errors" class="error-wrapper">
+                        <span *ngIf="signupForm.controls['currentctc'].errors['required']">Please enter your current sallary(in terms of CTC)!</span>
+                        <span *ngIf="signupForm.controls['currentctc'].errors['pattern']">Current CTC can contain only digits!</span>
+                    </div>
+                    <input type="text" 
+                        class="qualification-input" 
+                        id="currentctc" 
+                        placeholder="Enter current CTC"
+                        formControlName="currentctc"
+                    >
+                </div>
+                <!-- end Current CTC -->
+    
+                <!-- Expected CTC -->
+                <div class="input-wrapper half-input-width">
+                    <label class="qualification-label"  for="expectedctc">Expected CTC* (In Rupees)</label>
+                    <div *ngIf="signupForm.controls['expectedctc'].touched && signupForm.controls['expectedctc'].errors" class="error-wrapper">
+                        <span *ngIf="signupForm.controls['expectedctc'].errors['required']" class="error-wrapper">Please enter your expected sallary(in terms of CTC)!</span>
+                        <span *ngIf="signupForm.controls['expectedctc'].errors['pattern']" class="error-wrapper">Expected CTC can contain only digits!</span>
+                    </div>
+                    <input type="text"
+                        class="qualification-input" 
+                        id="expectedctc" 
+                        placeholder="Enter CTC you expect"
+                        formControlName="expectedctc"
+                    >
+                </div>
+                <!-- end Expected CTC -->
+                <!-- Expertised technology -->
+                <div class="checkbox-root">
+                    <div class="checkbox-heading">Select All The Technologies You Expertise In*</div>
+                    <div class="checkbox">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox"
+                                class="persobal-info-input" 
+                                id="expertisedjavascript"
+                                formControlName="expertisedjavascript"
+                            >
+                            <label class="personal-info-label" class="check-text-label" for="expertisedjavascript">Javascript</label>
+                        </div>
             
-            <!-- Current CTC -->
-            <div class="input-wrapper half-input-width">
-                <label class="qualification-label"  for="currentctc">Current CTC* (In Rupees)</label>
-                <div *ngIf="signupForm.controls['currentctc'].touched && signupForm.controls['currentctc'].errors" class="error-wrapper">
-                    <span *ngIf="signupForm.controls['currentctc'].errors['required']">Please enter your current sallary(in terms of CTC)!</span>
-                    <span *ngIf="signupForm.controls['currentctc'].errors['pattern']">Current CTC can contain only digits!</span>
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox"
+                                class="persobal-info-input" 
+                                id="expertisedangular"
+                                formControlName="expertisedangular"
+                            >
+                            <label class="personal-info-label" class="check-text-label" for="expertisedangular">Angular JS</label>
+                        </div>
+            
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox"
+                                class="persobal-info-input" 
+                                id="expertisedreact"
+                                formControlName="expertisedreact"
+                            >
+                            <label class="personal-info-label" class="check-text-label" for="expertisedreact">React</label>
+                        </div>
+                        
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox"
+                                class="persobal-info-input" 
+                                id="expertisednode"
+                                formControlName="expertisednode"
+                            >
+                            <label class="personal-info-label" class="check-text-label" for="expertisednode">Node JS</label>
+                        </div>
+            
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox"
+                                class="persobal-info-input"  
+                                id="expertisedother"
+                                formControlName="expertisedother"
+                            >
+                            <label class="personal-info-label" class="check-text-label" for="expertisedother">Other</label>
+                        </div>
+                    </div>
                 </div>
-                <input type="text" 
-                    class="qualification-input" 
-                    id="currentctc" 
-                    placeholder="Enter current CTC"
-                    formControlName="currentctc"
-                >
-            </div>
-            <!-- end Current CTC -->
 
-            <!-- Current CTC -->
-            <div class="input-wrapper half-input-width">
-                <label class="qualification-label"  for="expectedctc">Expected CTC* (In Rupees)</label>
-                <div *ngIf="signupForm.controls['expectedctc'].touched && signupForm.controls['expectedctc'].errors" class="error-wrapper">
-                    <span *ngIf="signupForm.controls['expectedctc'].errors['required']" class="error-wrapper">Please enter your expected sallary(in terms of CTC)!</span>
-                    <span *ngIf="signupForm.controls['expectedctc'].errors['pattern']" class="error-wrapper">Expected CTC can contain only digits!</span>
+                <div [ngClass]="{'d-none': !expertistedOtherTextVisible}" class="input-wrapper half-input-width">
+                    <label class="qualification-label"  for="expertisedothertext">If others, please mention</label>
+                    <div *ngIf="signupForm.controls['expertisedothertext'].touched && signupForm.controls['expertisedothertext'].errors" class="error-wrapper">
+                        <span *ngIf="signupForm.controls['expertisedothertext'].errors['required']">Please mention with with other technologied you familier with!</span>
+                        <span *ngIf="signupForm.controls['expertisedothertext'].errors['pattern']">This field can contain only alphabets and digits!</span>
+                    </div>
+                    <input type="text"
+                        class="qualification-input"   
+                        id="expertisedothertext"
+                        formControlName="expertisedothertext"
+                    >
                 </div>
-                <input type="text"
-                    class="qualification-input" 
-                    id="expectedctc" 
-                    placeholder="Enter CTC you expect"
-                    formControlName="expectedctc"
-                >
-            </div>
-            <!-- end Current CTC -->
-
-            <!-- Expertised technology -->
-            <div class="checkbox-root">
-                <div class="checkbox-heading">Select All The Technologies You Expertise In*</div>
-                <div class="checkbox">
-                    <div class="checkbox-wrapper">
-                        <input type="checkbox"
-                            class="persobal-info-input" 
-                            id="expertisedjavascript"
-                            formControlName="expertisedjavascript"
-                        >
-                        <label class="personal-info-label" class="check-text-label" for="expertisedjavascript">Javascript</label>
-                    </div>
-        
-                    <div class="checkbox-wrapper">
-                        <input type="checkbox"
-                            class="persobal-info-input" 
-                            id="expertisedangular"
-                            formControlName="expertisedangular"
-                        >
-                        <label class="personal-info-label" class="check-text-label" for="expertisedangular">Angular JS</label>
-                    </div>
-        
-                    <div class="checkbox-wrapper">
-                        <input type="checkbox"
-                            class="persobal-info-input" 
-                            id="expertisedreact"
-                            formControlName="expertisedreact"
-                        >
-                        <label class="personal-info-label" class="check-text-label" for="expertisedreact">React</label>
-                    </div>
-                    
-                    <div class="checkbox-wrapper">
-                        <input type="checkbox"
-                            class="persobal-info-input" 
-                            id="expertisednode"
-                            formControlName="expertisednode"
-                        >
-                        <label class="personal-info-label" class="check-text-label" for="expertisednode">Node JS</label>
-                    </div>
-        
-                    <div class="checkbox-wrapper">
-                        <input type="checkbox"
-                            class="persobal-info-input"  
-                            id="expertisedother"
-                            formControlName="expertisedother"
-                        >
-                        <label class="personal-info-label" class="check-text-label" for="expertisedother">Other</label>
-                    </div>
-                </div>
-            </div>
-
-            <div [ngClass]="{'d-none': !expertistedOtherTextVisible}" class="input-wrapper half-input-width">
-                <label class="qualification-label"  for="expertisedothertext">If others, please mention</label>
-                <div *ngIf="signupForm.controls['expertisedothertext'].touched && signupForm.controls['expertisedothertext'].errors" class="error-wrapper">
-                    <span *ngIf="signupForm.controls['expertisedothertext'].errors['required']">Please mention with with other technologied you familier with!</span>
-                    <span *ngIf="signupForm.controls['expertisedothertext'].errors['pattern']">This field can contain only alphabets and digits!</span>
-                </div>
-                <input type="text"
-                    class="qualification-input"   
-                    id="expertisedothertext"
-                    formControlName="expertisedothertext"
-                >
-            </div>
-            <!-- end Expertised technology -->
+                <!-- end Expertised technology -->
+            </ng-container>
 
             <!-- Familier technology -->
             <div class="checkbox-root">
@@ -329,59 +329,66 @@
             </div>
             <!-- end Familier technology -->
 
-            <!-- On notice period -->
-            <div class="notice-period-wrapper">
-                <div class="radio-main-wrapper">
-                    <div class="radio-label">Are you currently on notice period?*</div>
-                    <div class="radio">
-                        <div class="radio-wrapper">
-                            <input type="radio" 
-                                id="noticeyes" 
-                                value="true"
-                                formControlName="noticeperiod"
-                                checked
-                            >
-                            <label for="noticeyes">Yes</label>
-                        </div>
-                        <div class="radio-wrapper">
-                            <input type="radio" 
-                                id="noticeno"
-                                value="false"
-                                formControlName="noticeperiod"
-                            >
-                            <label for="noticeno">No</label>
+            <ng-container *ngIf="appicationType == 'experienced'">
+
+                <!-- On notice period -->
+                <div class="notice-period-wrapper">
+                    <div class="radio-main-wrapper">
+                        <div class="radio-label">Are you currently on notice period?*</div>
+                        <div class="radio">
+                            <div class="radio-wrapper">
+                                <input type="radio" 
+                                    id="noticeyes" 
+                                    value="true"
+                                    formControlName="noticeperiod"
+                                    checked
+                                >
+                                <label for="noticeyes">Yes</label>
+                            </div>
+                            <div class="radio-wrapper">
+                                <input type="radio" 
+                                    id="noticeno"
+                                    value="false"
+                                    formControlName="noticeperiod"
+                                >
+                                <label for="noticeno">No</label>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- end On notice period -->
-            <div class="double-input-wrapper">
-                <!-- Notice period end date -->
-                <div [ngClass]="{'d-none': !noticePeriodEndDateVisible }" class="input-wrapper">
-                    <label class="qualification-label" for="noticeenddate">If Yes, when will your notice period end?*</label>
-                    <input type="date"
-                        class="qualification-input" 
-                        id="noticeenddate"
-                        formControlName="noticeenddate"
-                    >
+                <!-- end On notice period -->
+                <div class="double-input-wrapper">
+                    <!-- Notice period end date -->
+                    <div [ngClass]="{'d-none': !noticePeriodEndDateVisible }" class="input-wrapper">
+                        <label class="qualification-label" for="noticeenddate">If Yes, when will your notice period end?*</label>
+                        <input type="date"
+                            class="qualification-input" 
+                            id="noticeenddate"
+                            formControlName="noticeenddate"
+                        >
+                    </div>
+                    <!-- end Notice period end date -->
+    
+                    <!-- Notice period length -->
+                    <div class="input-wrapper">
+                        <label class="qualification-label"  for="noticelenght">How long is your notice period?* (Mention in months)</label>
+                        <div *ngIf="signupForm.controls['noticelenght'].touched && signupForm.controls['noticelenght'].errors" class="error-wrapper">
+                            <span *ngIf="signupForm.controls['noticelenght'].errors['required']">Please mention how long your notice period is!</span>
+                            <span *ngIf="signupForm.controls['noticelenght'].errors['pattern']">This field can contain only digits!</span>
+                        </div>
+                        <input type="text"
+                            class="qualification-input" 
+                            id="noticelenght" 
+                            placeholder="e.g. 2 months"
+                            formControlName="noticelenght"
+                        >
+                    </div>
+                    <!-- endn Notice period length -->
                 </div>
-                <!-- end Notice period end date -->
-
-                <!-- Notice period length -->
-                <div class="input-wrapper">
-                    <label class="qualification-label"  for="noticelenght">How long is your notice period?* (Mention in months)</label>
-                    <input type="text"
-                        class="qualification-input" 
-                        id="noticelenght" 
-                        placeholder="e.g. 2 months"
-                        formControlName="noticelenght"
-                    >
-                </div>
-                <!-- endn Notice period length -->
-            </div>
+            </ng-container>
 
             <!-- Applied in zeus since last 12 months -->
-            <div class="appearedintest-wrapper">
+            <!-- <div class="appearedintest-wrapper">
                 <div class="radio-main-wrapper">
                     <div class="radio-label">Have You Appeared For Any Test By Zeus in the past 12 months?*</div>
                     <div class="radio">
@@ -403,11 +410,11 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- end Applied in zeus since last 12 months -->
 
             <!-- If appeared in test then for which position you appeared -->
-            <div [ngClass]="{'d-none': !zeusAppliedTextVisible}" class="input-wrapper half-input-width mb-0">
+            <!-- <div [ngClass]="{'d-none': !zeusAppliedTextVisible}" class="input-wrapper half-input-width mb-0">
                 <label class="qualification-label" for="whichpositionappeared">If Yes, which role did you apply for?</label>
                 <div *ngIf="signupForm.controls['whichpositionappeared'].touched && signupForm.controls['whichpositionappeared'].errors" class="error-wrapper">
                     <span *ngIf="signupForm.controls['whichpositionappeared'].errors['required']">Please enter for which field you applied!</span>
@@ -419,7 +426,7 @@
                     placeholder="Enter for which role you have applied"
                     formControlName="whichpositionappeared"
                 >
-            </div>
+            </div> -->
             <!-- end If appeared in test then for which position you appeared -->
 
         </div>

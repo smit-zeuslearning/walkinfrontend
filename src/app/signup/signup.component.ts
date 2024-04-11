@@ -7,7 +7,7 @@ import { SignupStatusbarComponent } from '../signup-statusbar/signup-statusbar.c
 import { SignupTopbarComponent } from '../signup-topbar/signup-topbar.component';
 import { SetpasswordComponent } from '../setpassword/setpassword.component';
 import { AuthService } from '../services/AuthService/auth.service';
-import { UserRegistration } from '../../_interfaces/userregistration.interface';
+import { FresherUserRegistrationDto, UserRegistration } from '../../_interfaces/userregistration.interface';
 import { Storage, getDownloadURL, ref, uploadString } from '@angular/fire/storage';
 
 @Component({
@@ -49,14 +49,14 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {
     this.signupForm = this.formbuilder.group({
       personalInfo: this.formbuilder.group({
-        firstname: ['', [Validators.required, Validators.pattern('[a-zA-Z\' \']*')]],
-        lastname: ['', [Validators.required, Validators.pattern('[a-zA-Z\' \']*')]],
+        firstname: ['', [Validators.required, Validators.pattern('[a-zA-Z]*')]],
+        lastname: ['', [Validators.required, Validators.pattern('[a-zA-Z]*')]],
         email: ['', [Validators.required, Validators.email]],
         countrycode: ['', [Validators.required, Validators.pattern('[0-9]{3}|[0-9]{2}')]],
         phonenumber: ['', [Validators.required, Validators.pattern('[0-9]{11}|[0-9]{10}')]],
         resume: ['', [Validators.required]],
         portfolio: ['', [Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]],
-        refrral: ['', [Validators.pattern('[0-9a-zA-Z\' \']*')]],
+        // refrral: ['', [Validators.pattern('[0-9a-zA-Z\' \']*')]],
         getupdates: [''],
         profilepic: ['', [Validators.required]],
 
@@ -77,10 +77,10 @@ export class SignupComponent implements OnInit {
         collegeLocation: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9\' \']*')]],
 
         // ***Professional qualifiacation***
-        applicationtype: [''], // Radio button(fresher, experienced)
-        yearofexperience: ['', [Validators.required, Validators.pattern('[0-9]*')]],
-        currentctc: ['', [Validators.required, Validators.pattern('[0-9]*')]],
-        expectedctc: ['', [Validators.required, Validators.pattern('[0-9]*')]],
+        applicationtype: ['fresher'], // Radio button(fresher, experienced)
+        yearofexperience: [''],
+        currentctc: [''],
+        expectedctc: [''],
 
         // Expertised technology checkboxes
         expertisedjavascript: [],
@@ -106,8 +106,8 @@ export class SignupComponent implements OnInit {
         noticelenght: [],
 
         // Applied for the zeus test before
-        appliedinzeus: ['true'], // Radio button(yes, no)
-        whichpositionappeared: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]*')]]
+        // appliedinzeus: ['true'], // Radio button(yes, no)
+        // whichpositionappeared: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]*')]]
       }),
 
       passwordFormGroup: this.formbuilder.group({
@@ -119,7 +119,7 @@ export class SignupComponent implements OnInit {
   // method to change active page
   changeActivePage(pageActivate: number): void {
     this.currentActivePage = SignupComponent.signupSubPageNames[pageActivate];
-    window.scroll({top:0,left:0, behavior:'smooth'})
+    window.scroll({ top: 0, left: 0, behavior: 'smooth' })
   }
 
   // Methdo to call the changeActivePage method via child component using event emitter
@@ -129,7 +129,21 @@ export class SignupComponent implements OnInit {
 
   // Method to handle form submit
   async onSignupFormSubmit() {
-    const formDetailAPIForm: UserRegistration = {
+    var formDetailAPIForm!: UserRegistration | FresherUserRegistrationDto;
+    if(this.signupForm.value['qualificationInfo']['applicationtype'] == 'fresher'){
+      formDetailAPIForm = await this.getFreshApplicationDto();
+    }else if(this.signupForm.value['qualificationInfo']['applicationtype']){
+      formDetailAPIForm = await this.getExperiencedApplicationDto();
+    }
+    console.log(formDetailAPIForm)
+
+    // Sumitting user data to the server
+    this.authService.performSignup(formDetailAPIForm);
+  }
+
+  // Get Experienced application Dto
+  async getExperiencedApplicationDto(){
+    const experiencedFormData: UserRegistration = {
       "UserName": this.signupForm.value['personalInfo']['firstname'],
       "PasswordHash": this.signupForm.value['passwordFormGroup']['password'],
       "Firstname": this.signupForm.value['personalInfo']['firstname'],
@@ -169,8 +183,6 @@ export class SignupComponent implements OnInit {
           "OnOnticePeriod": this.refineCheckboxValue(this.signupForm.value['qualificationInfo']['noticeperiod']),
           "LastWorkingDate": this.signupForm.value['qualificationInfo']['noticeenddate'], // yyyy-mm-dd
           "TerminationNoticeMonths": this.signupForm.value['qualificationInfo']['noticelenght'],
-          "ZeusTestLast12months": this.refineCheckboxValue(this.signupForm.value['qualificationInfo']['appliedinzeus']),
-          "AppledRoldLast12months": this.signupForm.value['qualificationInfo']['whichpositionappeared'],
           "ExpertisedTechnologies": [
             {
               "Javascript": this.refineCheckboxValue(this.signupForm.value['qualificationInfo']['expertisedjavascript']),
@@ -192,14 +204,66 @@ export class SignupComponent implements OnInit {
         }
       ]
     }
-    console.log(formDetailAPIForm)
 
-    // Sumitting user data to the server
-    this.authService.performSignup(formDetailAPIForm);
+    return experiencedFormData;
+  }
+
+  // Get fresh application Dto
+  async getFreshApplicationDto() {
+    const fresherDto: FresherUserRegistrationDto =  {
+      "UserName": this.signupForm.value['personalInfo']['firstname'],
+      "PasswordHash": this.signupForm.value['passwordFormGroup']['password'],
+      "Firstname": this.signupForm.value['personalInfo']['firstname'],
+      "Lastname": this.signupForm.value['personalInfo']['lastname'],
+      "Email": this.signupForm.value['personalInfo']['email'],
+      "Resume": await this.uploadFileToBucket(this.signupForm.value['personalInfo']['resume'], 'resume'),
+      "DisplayPicture": await this.uploadFileToBucket(this.signupForm.value['personalInfo']['profilepic'], 'image'),
+      "PortfolioUrl": this.signupForm.value['personalInfo']['portfolio'],
+      "GetJobUpdate": this.refineCheckboxValue(this.signupForm.value['personalInfo']['getupdates']),
+      "ContactNumbers": [
+        {
+          "CountryCode": this.signupForm.value['personalInfo']['countrycode'],
+          "PhoneNumber": this.signupForm.value['personalInfo']['phonenumber']
+        }
+      ],
+      "Educations": [
+        {
+          "AggregatePercentage": this.signupForm.value['qualificationInfo']['percentage'],
+          "PassingYear": this.signupForm.value['qualificationInfo']['passingyear'],
+          "Qualification": this.signupForm.value['qualificationInfo']['qualification'],
+          "EducationStream": this.signupForm.value['qualificationInfo']['stream'],
+          "CollegeName": this.signupForm.value['qualificationInfo']['college'],
+          "CollegeLocation": this.signupForm.value['qualificationInfo']['collegeLocation']
+        }
+      ],
+      "PreferredJobRoles": [
+        {
+          "InstructionalDesigner": this.refineCheckboxValue(this.signupForm.value['personalInfo']['instructionalDesigner']),
+          "SoftwareEnginner": this.refineCheckboxValue(this.signupForm.value['personalInfo']['softwareEngineer']),
+          "SoftwareQualityEngineer": this.refineCheckboxValue(this.signupForm.value['personalInfo']['softwareQualityEngineer'])
+        }
+      ],
+      "ProfessionalQualifications": [
+        {
+          "ApplicationType": this.signupForm.value['qualificationInfo']['applicationtype'],
+          "FamalierTechnologies": [
+            {
+              "Javascript": this.refineCheckboxValue(this.signupForm.value['qualificationInfo']['familierjavascript']),
+              "Angularjs": this.refineCheckboxValue(this.signupForm.value['qualificationInfo']['familierangular']),
+              "Reactjs": this.refineCheckboxValue(this.signupForm.value['qualificationInfo']['familierreact']),
+              "Nodejs": this.refineCheckboxValue(this.signupForm.value['qualificationInfo']['familiernode']),
+              "Other": this.signupForm.value['qualificationInfo']['familierothertext']
+            }
+          ]
+        }
+      ]
+    }
+
+    return fresherDto;
   }
 
   // Method to upload profile pic and resume to firebase bucket
-  async uploadFileToBucket(fileString: string, type: string){
+  async uploadFileToBucket(fileString: string, type: string) {
     console.log('file being uploaded')
     const storageRef = ref(this.storage, `${type}/${this.generateFileName(fileString)}`);
     const uploadTask = await uploadString(storageRef, fileString, 'data_url');
@@ -209,15 +273,15 @@ export class SignupComponent implements OnInit {
   }
 
   // generate unique file name with extension 
-  generateFileName(fileBase64: string): string{
+  generateFileName(fileBase64: string): string {
     const uuid = this.generateGuid();
     const extension = fileBase64.split(';')[0].split('/')[1];
-    return uuid+extension;
+    return uuid + extension;
   }
 
   // Method to generate unique UUID
-  generateGuid() : string {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+  generateGuid(): string {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
       var r = Math.random() * 16 | 0,
         v = c == 'x' ? r : (r & 0x3 | 0x8);
       return v.toString(16);
@@ -225,12 +289,12 @@ export class SignupComponent implements OnInit {
   }
 
   // Method to refine checkbox value
-  refineCheckboxValue(val: any): boolean{
-    if(val){
+  refineCheckboxValue(val: any): boolean {
+    if (val) {
       return true
-    }else{
+    } else {
       return false;
     }
   }
-  
+
 }

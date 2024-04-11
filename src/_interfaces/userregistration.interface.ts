@@ -40,8 +40,6 @@ interface UserRegistrationProfessionalQualification {
     "OnOnticePeriod": boolean,
     "LastWorkingDate": string, // yyyy-mm-dd
     "TerminationNoticeMonths": number,
-    "ZeusTestLast12months": boolean,
-    "AppledRoldLast12months": string,
     "ExpertisedTechnologies": UserRegistrationExpertisedTechnologies[],
     "FamalierTechnologies": UserRegistrationFamilierTechnologies[]
 }
@@ -63,67 +61,25 @@ export interface UserRegistration {
 }
 
 
+// User registration for fresher
+interface FresherUserRegistrationProfessionalQualification {
+    "ApplicationType": string,
+    "FamalierTechnologies": UserRegistrationFamilierTechnologies[]
+}
 
 
-// interface UserRegistrationContactNumber {
-//     "countryCode": string,
-//     "phoneNumber": string
-// }
-// interface UserRegistrationEducation {
-//     "aggregatePercentage": string,
-//     "passingYear": string,
-//     "qualification": string,
-//     "educationStream": string,
-//     "collegeName": string,
-//     "collegeLocation": string
-// }
-
-// interface UserRegistrationPreferredJobRoles {
-//     "instructionalDesigner": boolean,
-//     "softwareEnginner": boolean,
-//     "softwareQualityEngineer": boolean
-// }
-
-// interface UserRegistrationFamilierTechnologies {
-//     "javascript": boolean,
-//     "angularjs": boolean,
-//     "reactjs": boolean,
-//     "nodejs": boolean,
-//     "other": string
-// }
-
-// interface UserRegistrationExpertisedTechnologies {
-//     "javascript": boolean,
-//     "angularjs": boolean,
-//     "reactjs": boolean,
-//     "nodejs": boolean,
-//     "other": string
-// }
-
-// interface UserRegistrationProfessionalQualification {
-//     "applicationType": string,
-//     "totalExperience": string,
-//     "onOnticePeriod": string,
-//     "lastWorkingDate": string, // yyyy-mm-dd
-//     "terminationNoticeMonths": string,
-//     "zeusTestLast12months": string,
-//     "appledRoldLast12months": string,
-//     "expertisedTechnologies": UserRegistrationExpertisedTechnologies[],
-//     "famalierTechnologies": UserRegistrationFamilierTechnologies[]
-// }
-
-// export interface UserRegistration {
-//     "userName": string,
-//     "passwordHash": string,
-//     "firstname": string,
-//     "lastname": string,
-//     "email": string,
-//     "resume": string,
-//     "displayPicture": string,
-//     "portfolioUrl": string,
-//     "getJobUpdate": boolean,
-//     "contactNumbers": UserRegistrationContactNumber[],
-//     "educations": UserRegistrationEducation[],
-//     "preferredJobRoles": UserRegistrationPreferredJobRoles[],
-//     "professionalQualifications": UserRegistrationProfessionalQualification[]
-// }
+export interface FresherUserRegistrationDto {
+    "UserName": string,
+    "PasswordHash": string,
+    "Firstname": string,
+    "Lastname": string,
+    "Email": string,
+    "Resume": string,
+    "DisplayPicture": string,
+    "PortfolioUrl": string,
+    "GetJobUpdate": boolean,
+    "ContactNumbers": UserRegistrationContactNumber[],
+    "Educations": UserRegistrationEducation[],
+    "PreferredJobRoles": UserRegistrationPreferredJobRoles[],
+    "ProfessionalQualifications": FresherUserRegistrationProfessionalQualification[]
+}

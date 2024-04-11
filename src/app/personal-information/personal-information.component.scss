@@ -1,5 +1,9 @@
 @import '../variables';
 
+*{
+    font-family: quicksand;
+}
+
 .personal-info-content-wrapper {
     background-color: $grayBackgroundColor;
     padding: 0px 24px;
@@ -55,7 +59,7 @@
                     }
 
                     #phonenumber {
-                        width: 100px;
+                        max-width: 130px;
                     }
                 }
             }
@@ -64,6 +68,10 @@
                 margin-bottom: 40px;
                 display: flex;
                 flex-direction: column;
+                width: fit-content;
+                display: flex;
+                justify-content: center;
+                align-items: center;
 
                 .resume-file-name-wrapper {
                     color: black;
@@ -202,6 +210,12 @@
 
 }
 
+.get-update-heading {
+    color: $secondaryTextColor;
+    font-size: $fontMedium;
+    margin-bottom: 16px;
+}
+
 .error-wrapper {
     color: $redTextColor;
     font-size: $fontSmall;
@@ -226,11 +240,11 @@
         padding: 5px 27px;
         font-weight: bold;
 
-        &:hover{
+        &:hover {
             background-color: $primaryButtonHoverColor;
         }
 
-        &:disabled{
+        &:disabled {
             background-color: $primaryButtonDisabledColor;
             cursor: default;
         }

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormGroup, FormGroupDirective, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormGroupDirective, ReactiveFormsModule, ValidationErrors } from '@angular/forms';
 
 @Component({
   selector: 'app-setpassword',
