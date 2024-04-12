@@ -1,24 +1,24 @@
 <div class="job-listing-wrapper">
     <!-- Job card -->
-    <div *ngFor = "let job of jobDetails" class="card-wrapper">
+    <div *ngFor = "let job of jobPostData" class="card-wrapper">
         <!-- Expires Tag -->
-        <div *ngIf="job.expires" class="expires">
+        <!-- <div *ngIf="job.expires" class="expires">
             Expires in 5 days
-        </div>
+        </div> -->
         <!-- end Expires Tag -->
 
         <!-- Job title -->
-        <h1 class="job-title">{{job.title}}</h1>
+        <h1 class="job-title">{{job.Title}}</h1>
 
         <!-- Job Address -->
         <div class="job-address-wrapper">
             <div class="address-heading">Date & Time</div>
             <div class="date-time-wrapper">
-                <div class="date-time">{{job.datetime}}</div>
+                <div class="date-time">{{job.StartDate}} to {{ job.EndDate }}</div>
                 <div class="vertical-seprator"></div>
                 <div class="location">
                     <img class="location-logo" src="../../assets/icons/location_icon.svg" alt="interview location">
-                    {{job.location}}
+                    {{job.Address[0].City}}
                 </div>
             </div>
         </div>
@@ -33,51 +33,31 @@
 
             <!-- .Job wrapper -->
             <div class="jobroles">
-                <!-- Job role 1  -->
-                <div *ngIf="job.Instructional_Designer" class="job">
-                    <div class="job-icon-wrapper">
-                        <img src="../../assets/icons/Instructional Designer.svg" alt="Instructional Designer">
+                <ng-container *ngFor="let jobrole of job.JobRoles">
+                    <!-- Job role 1  -->
+                    <div class="job">
+                        <div class="job-icon-wrapper">
+                            <img src="../../assets/icons/Instructional Designer.svg" alt="Instructional Designer">
+                        </div>
+                        {{ jobrole.RoleTitle }}
                     </div>
-                    Instructional Designer
-                </div>
-                <!-- end job role 1 -->
-
-                <div *ngIf="job.Instructional_Designer && (job.software_engineer || job.software_quality_engineer)" class="jobroles-vertical-seprator"></div>
-
-                <!-- Job role 2 -->
-                <div *ngIf="job.software_engineer" class="job">
-                    <div class="job-icon-wrapper">
-                        <img src="../../assets/icons/Software Quality Engineer.svg" alt="Software Engineer Available">
-                    </div>
-                    Software Engineer
-                </div>
-                <!-- Job role 2 -->
-
-                <div *ngIf="job.software_engineer && job.software_quality_engineer" class="jobroles-vertical-seprator"></div>
-
-                <!-- Job role 3 -->
-                <div *ngIf="job.software_quality_engineer" class="job">
-                    <div class="job-icon-wrapper">
-                        <img src="../../assets/icons/Software Quality Engineer.svg"
-                            alt="Software Quality Engineer Available">
-                    </div>
-                    Software Quality Engineer
-                </div>
-                <!-- Job role 3 -->
+                    <!-- end job role 1 -->
+                    <!-- <div class="jobroles-vertical-seprator"></div> -->
+                </ng-container>
             </div>
             <!-- end job wrapper -->
         </div>
         <!-- end job roles -->
 
         <!-- Special opportunity -->
-        <div *ngIf="job.special_opportunity" class="special-opportunity">
+        <!-- <div *ngIf="job.special_opportunity" class="special-opportunity">
             {{job.special_opportunity}}
-        </div>
+        </div> -->
         <!-- end special opportunity -->
 
         <!-- View More Details button -->
         <div class="view-details-button-wrapper">
-            <button>view more details</button>
+            <button id="{{ job.Id }}" (click)="onClickjumpToDetailedDescriptionPage($event)">view more details</button>
         </div>
         <!-- end View More Details button -->
     </div>

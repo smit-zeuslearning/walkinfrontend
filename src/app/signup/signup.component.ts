@@ -269,7 +269,7 @@ export class SignupComponent implements OnInit {
     const uploadTask = await uploadString(storageRef, fileString, 'data_url');
     const downloadUrl = await getDownloadURL(uploadTask.ref);
 
-    return downloadUrl
+    return downloadUrl;
   }
 
   // generate unique file name with extension 

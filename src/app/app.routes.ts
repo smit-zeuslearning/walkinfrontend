@@ -12,6 +12,7 @@ import { ResetForgotPasswordComponent } from './reset-forgot-password/reset-forg
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { loginGuard } from './guards/login.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { PostJobsComponent } from './post-jobs/post-jobs.component';
 
 export const routes: Routes = [
     {path: 'login', component: LoginComponent, title: 'Login'},
@@ -22,7 +23,8 @@ export const routes: Routes = [
     {path: 'forgotpassword', component: ForgotPasswordComponent, title: 'forgot password'},
     {path: 'resetforgotpassword', component: ResetForgotPasswordComponent, title: 'reset forgot password'},
     {path: 'profile', component: UserProfileComponent, title: 'user profile', canActivate: [loginGuard]},
-    {path: 'dashboard', component: DashboardComponent, title: 'dash board'},
+    {path: 'dashboard', component: DashboardComponent, title: 'dashboard'},
+    {path: 'postjobs', component: PostJobsComponent, title: 'post jobs'},
     {path: '', component: JobListingComponent, title: 'jobs', pathMatch:'full'},
     {path: '**', title: 'error', component: Error404Component}
 ];
